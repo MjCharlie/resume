@@ -51,22 +51,22 @@ custom_css = """
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- Logo and Title ---
-st.image("company_logo.png", width=100)  # Place your logo file in same directory
-st.title("📄 AI Resume Optimizer")
+st.image("image.png", width=100)  # Place your logo file in same directory
+st.title("🤖 AI Resume Optimizer")
 st.markdown("""
 Upload your resume, paste a Job Description, select an AI model, and let our
 system tailor your resume for the specific role!
 """)
 
 # --- AI Model Selection (converted to top row) ---
-AI_MODELS = ["GPT-4", "Claude 3", "Gemini"]
-selected_ai_model = st.selectbox(
-    "Select AI Model for Optimization:",
-    AI_MODELS,
-    index=0
-)
+# AI_MODELS = ["GPT-4", "Claude 3", "Gemini"]
+# selected_ai_model = st.selectbox(
+#     "Select AI Model for Optimization:",
+#     AI_MODELS,
+#     index=0
+# )
 
-st.info("Note: File handling uses in-memory objects for uploads and downloads.")
+# st.info("Note: File handling uses in-memory objects for uploads and downloads.")
 
 # --- Session State Initialization ---
 if 'original_resume_text' not in st.session_state:
