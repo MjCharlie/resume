@@ -15,57 +15,81 @@ st.set_page_config(page_title="AI Resume Optimizer", page_icon="📄", layout="w
 # --- Custom Tech Theme Styling ---
 custom_css = """
 <style>
-    body {
-        background-color: #0f1117;
-        color: #f1f1f1;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    html, body {
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        color: #f0f0f0;
+        font-family: 'Inter', sans-serif;
     }
+
     .main {
-        padding: 2rem;
-        background: linear-gradient(to bottom right, #1a1a2e, #16213e);
+        background-color: #1a1a2e;
         border-radius: 12px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        padding: 2rem;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
+
     h1, h2, h3 {
-        color: #45f3ff;
+        color: #00fff5;
+        font-weight: 700;
     }
+
     .stButton button {
         background-color: #00adb5;
         color: white;
         border: none;
-        padding: 0.5rem 1.5rem;
+        padding: 0.7rem 1.7rem;
         border-radius: 8px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
     }
-    .stTextArea textarea {
+    .stButton button:hover {
+        background-color: #00ffe0;
+        color: #000;
+    }
+
+    .stTextArea textarea, .stSelectbox div, .stFileUploader, .stTextInput input {
         background-color: #222831;
         color: #eeeeee;
         border-radius: 10px;
+        font-size: 1rem;
     }
+
+    .stTextArea label, .stFileUploader label, .stSelectbox label {
+        font-weight: 600;
+        color: #a8dadc;
+    }
+
     .stDownloadButton button {
-        background-color: #393e46;
-        color: #eeeeee;
-        border-radius: 6px;
-    }
-    .stFileUploader {
-        background-color: #16213e;
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-    }
-    .stFileUploader label {
-        color: #45f3ff;
-        font-size: 1.2rem;
-    }
-    .stFileUploader div[role="button"] {
-        background-color: #00adb5;
+        background-color: #007bff;
         color: white;
-        border: none;
-        padding: 0.5rem 1.5rem;
-        border-radius: 8px;
+        border-radius: 6px;
+        transition: transform 0.2s ease-in-out;
     }
-    .stSelectbox {
-        background-color: #222831;
-        color: #eeeeee;
-        border-radius: 10px;
+
+    .stDownloadButton button:hover {
+        transform: scale(1.05);
+        background-color: #00d4ff;
+        color: black;
+    }
+
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    .element-container:has(.stFileUploader) {
+        background-color: #0f1117;
+        border: 2px dashed #45f3ff;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .element-container:has(.stFileUploader):hover {
+        border-color: #00ffe0;
     }
 </style>
 """
