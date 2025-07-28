@@ -79,39 +79,30 @@ custom_css = """
         padding-bottom: 2rem;
     }
 
-    .element-container:has(.stFileUploader) {
-        background-color: #0f1117;
-        border: 2px dashed #45f3ff;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        transition: border-color 0.3s ease;
-    }
+    
 
-    .element-container:has(.stFileUploader):hover {
-        border-color: #00ffe0;
-    }
+    
 </style>
 """
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- Logo and Title ---
-st.image("image.png", width=200)
-st.title("🧠 AI Resume Optimizer")
+st.image("company_logo.png", width=100)
+st.title("📄 AI Resume Optimizer")
 st.markdown("""
 Upload your resume, paste a Job Description, select an AI model, and let our
 system tailor your resume for the specific role!
 """)
 
 # --- AI Model Selection ---
-# AI_MODELS = ["GPT-4", "Claude 3", "Gemini"]
-# selected_ai_model = st.selectbox(
-#     "Select AI Model for Optimization:",
-#     AI_MODELS,
-#     index=0
-# )
+AI_MODELS = ["GPT-4", "Claude 3", "Gemini"]
+selected_ai_model = st.selectbox(
+    "Select AI Model for Optimization:",
+    AI_MODELS,
+    index=0
+)
 
-# st.info("Note: File handling uses in-memory objects for uploads and downloads.")
+st.info("Note: File handling uses in-memory objects for uploads and downloads.")
 
 # --- Session State Initialization ---
 if 'original_resume_text' not in st.session_state:
@@ -167,7 +158,7 @@ dummy_jds_folder = "dummy_jds"
 jd_files = [f for f in os.listdir(dummy_jds_folder) if f.endswith(".txt")]
 jd_options = ["(Paste your own JD)"] + jd_files
 
-selected_jd_file = st.selectbox(" ", jd_options)
+selected_jd_file = st.selectbox("Or select from example JDs:", jd_options)
 
 if selected_jd_file != "(Paste your own JD)":
     with open(os.path.join(dummy_jds_folder, selected_jd_file), "r", encoding="utf-8") as f:
@@ -176,11 +167,16 @@ if selected_jd_file != "(Paste your own JD)":
 else:
     jd_text = st.session_state.jd_input_text
 
-st.session_state.jd_input_text = st.text_area(
-    "Paste the Job Description here",
-    value=st.session_state.jd_input_text,
-    height=300
-)
+st.session_state.jd_input_text = with st.container():
+    st.markdown("""
+        <div style='background-color: #0f1117; border: 2px dashed #45f3ff; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;'>
+    """, unsafe_allow_html=True)
+    st.session_state.jd_input_text = st.text_area(
+        "Paste the Job Description here",
+        value=st.session_state.jd_input_text,
+        height=300
+    )
+    st.markdown("""</div>""", unsafe_allow_html=True)
 
 # --- 3. Optimize ---
 st.header("⚙️ 3. Optimize Resume")
