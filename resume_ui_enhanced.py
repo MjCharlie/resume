@@ -176,11 +176,16 @@ if selected_jd_file != "(Paste your own JD)":
 else:
     jd_text = st.session_state.jd_input_text
 
-st.session_state.jd_input_text = st.text_area(
-    "Paste the Job Description here",
-    value=st.session_state.jd_input_text,
-    height=300
-)
+st.session_state.jd_input_text = with st.container():
+    st.markdown("""
+        <div style='background-color: #0f1117; border: 2px dashed #45f3ff; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem;'>
+    """, unsafe_allow_html=True)
+    st.session_state.jd_input_text = st.text_area(
+        "Paste the Job Description here",
+        value=st.session_state.jd_input_text,
+        height=300
+    )
+    st.markdown("""</div>""", unsafe_allow_html=True)
 
 # --- 3. Optimize ---
 st.header("⚙️ 3. Optimize Resume")
